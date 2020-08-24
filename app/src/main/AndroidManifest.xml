@@ -14,7 +14,7 @@
             android:name=".TopicDetailActivity"
             android:label="話題入力画面"
             android:parentActivityName=".TopicMakeActivity"
-            android:theme="@style/AppTheme.NoActionBar">>
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yuyaprograming.jp.netagirekun.TopicMakeActivity" />
@@ -28,7 +28,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yuyaprograming.jp.netagirekun.MainActivity" />
         </activity>
-        <activity android:name=".TopicSetActivity" />
+        <activity
+            android:name=".TopicSetActivity"
+            android:label="話題セット画面"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab.setOnClickListener { view ->
-            val intent = Intent(this@MainActivity, InputActivity::class.java)
+            val intent = Intent(this@MainActivity, TopicMakeActivity::class.java)
             startActivity(intent)
         }
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         listView1.setOnItemClickListener { parent, view, position, id ->
             // 入力・編集する画面に遷移させる
             val task = parent.adapter.getItem(position) as Task
-            val intent = Intent(this@MainActivity, InputActivity::class.java)
+            val intent = Intent(this@MainActivity, TopicMakeActivity::class.java)
             intent.putExtra(EXTRA_TASK, task.id)
             startActivity(intent)
         }

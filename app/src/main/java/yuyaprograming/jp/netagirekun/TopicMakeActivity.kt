@@ -7,12 +7,12 @@ import android.support.v7.app.AlertDialog
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
-import kotlinx.android.synthetic.main.content_input.*
+import kotlinx.android.synthetic.main.topic_make_input.*
 import java.util.*
 
 const val EXTRA_TOPIC = "yuyaprograming.jp.netagirekun.TOPIC"
 
-class InputActivity : AppCompatActivity() {
+class TopicMakeActivity : AppCompatActivity() {
     private lateinit var nRealm: Realm
     private val nRealmListener = object : RealmChangeListener<Realm> {
         override fun onChange(element: Realm) {
@@ -26,8 +26,8 @@ class InputActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_make)
 
-        topic_make.setOnClickListener {
-            val intent = Intent(this, TopicActivity::class.java)
+        topic_make_button.setOnClickListener {
+            val intent = Intent(this, TopicDetailActivity::class.java)
             startActivity(intent)
         }
 
@@ -36,13 +36,13 @@ class InputActivity : AppCompatActivity() {
         nRealm.addChangeListener(nRealmListener)
 
         // ListViewの設定
-        mTopicAdapter = TopicAdapter(this@InputActivity)
+        mTopicAdapter = TopicAdapter(this@TopicMakeActivity)
 
         // ListViewをタップしたときの処理
         listView2.setOnItemClickListener { parent, view, position, id ->
             // 入力・編集する画面に遷移させる
             val topic = parent.adapter.getItem(position) as Topic
-            val intent = Intent(this@InputActivity, TopicActivity::class.java)
+            val intent = Intent(this@TopicMakeActivity, TopicDetailActivity::class.java)
             intent.putExtra(EXTRA_TOPIC, topic.id)
             startActivity(intent)
         }
@@ -53,7 +53,7 @@ class InputActivity : AppCompatActivity() {
             val topic = parent.adapter.getItem(position) as Topic
 
             // ダイアログを表示する
-            val builder = AlertDialog.Builder(this@InputActivity)
+            val builder = AlertDialog.Builder(this@TopicMakeActivity)
 
             builder.setTitle("削除")
             builder.setMessage(topic.title + "を削除しますか")

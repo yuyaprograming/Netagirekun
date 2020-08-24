@@ -11,8 +11,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TopicMakeActivity"
+            android:name=".TopicDetailActivity"
+            android:label="話題入力画面"
+            android:parentActivityName=".TopicMakeActivity"
             android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yuyaprograming.jp.netagirekun.TopicMakeActivity" />
+        </activity>
+        <activity
+            android:name=".TopicMakeActivity"
+            android:label="話題一覧画面"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yuyaprograming.jp.netagirekun.MainActivity" />
         </activity>
         <activity android:name=".TopicSetActivity" />
         <activity

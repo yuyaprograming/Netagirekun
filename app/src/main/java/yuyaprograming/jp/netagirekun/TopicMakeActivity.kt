@@ -8,7 +8,6 @@ import android.view.View
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
-import kotlinx.android.synthetic.main.topic_detail_input.*
 import kotlinx.android.synthetic.main.topic_make_input.*
 import java.util.*
 
@@ -54,7 +53,6 @@ class TopicMakeActivity : AppCompatActivity() {
         } else {
             // 更新の場合
             title_edit_text.setText(mTask!!.title)
-            content_edit_text.setText(mTask!!.contents)
         }
 
         // Realmの設定
@@ -126,10 +124,8 @@ class TopicMakeActivity : AppCompatActivity() {
         }
 
         val title = title_edit_text.text.toString()
-        val content = content_edit_text.text.toString()
 
         mTask!!.title = title
-        mTask!!.contents = content
 
         realm.copyToRealmOrUpdate(mTask!!)
         realm.commitTransaction()

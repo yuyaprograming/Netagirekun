@@ -4,9 +4,11 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.view.View
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
+import kotlinx.android.synthetic.main.topic_detail_input.*
 import kotlinx.android.synthetic.main.topic_make_input.*
 import java.util.*
 
@@ -22,6 +24,13 @@ class TopicMakeActivity : AppCompatActivity() {
 
     private lateinit var mTopicAdapter: TopicAdapter
 
+    private var mTask: Task? = null
+
+    private val mOnDoneClickListener = View.OnClickListener {
+        addTask()
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_make)
@@ -29,6 +38,23 @@ class TopicMakeActivity : AppCompatActivity() {
         topic_make_button.setOnClickListener {
             val intent = Intent(this, TopicDetailActivity::class.java)
             startActivity(intent)
+        }
+
+        topic_make_input_done_button.setOnClickListener(mOnDoneClickListener)
+
+        // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する
+        val intent = intent
+        val taskId = intent.getIntExtra(EXTRA_TASK, -1)
+        val realm = Realm.getDefaultInstance()
+        mTask = realm.where(Task::class.java).equalTo("id", taskId).findFirst()
+        realm.close()
+
+        if (mTask == null) {
+            // 新規作成の場合
+        } else {
+            // 更新の場合
+            title_edit_text.setText(mTask!!.title)
+            content_edit_text.setText(mTask!!.contents)
         }
 
         // Realmの設定
@@ -77,6 +103,38 @@ class TopicMakeActivity : AppCompatActivity() {
         }
 
         reloadListView()
+    }
+
+    private fun addTask() {
+        val realm = Realm.getDefaultInstance()
+
+        realm.beginTransaction()
+
+        if (mTask == null) {
+            // 新規作成の場合
+            mTask = Task()
+
+            val taskRealmResults = realm.where(Task::class.java).findAll()
+
+            val identifier: Int =
+                if (taskRealmResults.max("id") != null) {
+                    taskRealmResults.max("id")!!.toInt() + 1
+                } else {
+                    0
+                }
+            mTask!!.id = identifier
+        }
+
+        val title = title_edit_text.text.toString()
+        val content = content_edit_text.text.toString()
+
+        mTask!!.title = title
+        mTask!!.contents = content
+
+        realm.copyToRealmOrUpdate(mTask!!)
+        realm.commitTransaction()
+
+        realm.close()
     }
 
     private fun reloadListView() {

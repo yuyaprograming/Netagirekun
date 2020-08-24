@@ -27,18 +27,18 @@
         android:layout_centerHorizontal="true"
         android:text="新しい話題を追加する" />
 
-    <ListView
-        android:id="@+id/listView2"
-        android:layout_below="@id/topic_make_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <Button
-        android:id="@+id/done_button"
+        android:id="@+id/topic_make_input_done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/listView2"
+        android:layout_below="@id/topic_make_button"
         android:layout_centerHorizontal="true"
-        android:text="変更を保存する" />
+        android:text="保存する" />
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_below="@id/topic_make_input_done_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

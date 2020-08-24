@@ -14,7 +14,7 @@
             android:name=".TopicDetailActivity"
             android:label="話題入力画面"
             android:parentActivityName=".TopicMakeActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yuyaprograming.jp.netagirekun.TopicMakeActivity" />

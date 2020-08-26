@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.topic_make_input.*
 import java.util.*
 
 const val EXTRA_TASK = "yuyaprograming.jp.netagirekun.TASK"
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab.setOnClickListener { view ->
+            topic_make_button.visibility = View.INVISIBLE
             val intent = Intent(this@MainActivity, TopicMakeActivity::class.java)
             startActivity(intent)
         }

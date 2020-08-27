@@ -23,7 +23,7 @@
             android:name=".TopicMakeActivity"
             android:label="話題一覧画面"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yuyaprograming.jp.netagirekun.MainActivity" />

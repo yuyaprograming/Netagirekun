@@ -4,10 +4,12 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.Toolbar
 import android.view.View
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
+import kotlinx.android.synthetic.main.activity_topic_make.*
 import kotlinx.android.synthetic.main.topic_make_input.*
 import java.time.LocalDateTime
 import java.util.*
@@ -35,12 +37,20 @@ class TopicMakeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_make)
 
+        // ActionBarを設定する
+        val toolbar = findViewById<View>(R.id.toolbar2) as Toolbar
+        setSupportActionBar(toolbar)
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+
         val value1 = intent.getIntExtra("VALUE1", 0)
         val value2 = intent.getIntExtra("VALUE2", 0)
 
         if(value1 > value2) {
             listView2.visibility = View.INVISIBLE
             topic_make_button.visibility = View.INVISIBLE
+            supportActionBar?.title = "ジャンル入力画面"
         } else {
             topic_make_button.visibility = View.VISIBLE
         }

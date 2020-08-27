@@ -27,4 +27,11 @@
         android:layout_alignParentRight="true"
         android:text="決定" />
 
+    <EditText
+        android:id="@+id/title_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topic_detail_input_done_button"
+        android:hint="ジャンル" />
+
 </RelativeLayout>

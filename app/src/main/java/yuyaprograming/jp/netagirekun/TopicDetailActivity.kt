@@ -21,6 +21,8 @@ class TopicDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_detail)
 
+        title_edit_text.visibility = View.INVISIBLE
+
         // ActionBarを設定する
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -42,6 +44,7 @@ class TopicDetailActivity : AppCompatActivity() {
         } else {
             // 更新の場合
             content_edit_text.setText(mTopic!!.contents)
+            title_edit_text.setText(mTopic!!.title)
         }
     }
 
@@ -65,8 +68,10 @@ class TopicDetailActivity : AppCompatActivity() {
             mTopic!!.id = identifier
         }
 
+        val title = title_edit_text.text.toString()
         val content = content_edit_text.text.toString()
 
+        mTopic!!.title = title
         mTopic!!.contents = content
 
         realm.copyToRealmOrUpdate(mTopic!!)

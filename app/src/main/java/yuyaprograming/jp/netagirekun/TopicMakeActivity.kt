@@ -39,6 +39,7 @@ class TopicMakeActivity : AppCompatActivity() {
         val value2 = intent.getIntExtra("VALUE2", 0)
 
         if(value1 > value2) {
+            listView2.visibility = View.INVISIBLE
             topic_make_button.visibility = View.INVISIBLE
         } else {
             topic_make_button.visibility = View.VISIBLE

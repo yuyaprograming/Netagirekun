@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab.setOnClickListener { view ->
-            topic_make_button.visibility = View.INVISIBLE
             val intent = Intent(this@MainActivity, TopicMakeActivity::class.java)
+            intent.putExtra("VALUE1", 10)
             startActivity(intent)
         }
 
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             val task = parent.adapter.getItem(position) as Task
             val intent = Intent(this@MainActivity, TopicMakeActivity::class.java)
             intent.putExtra(EXTRA_TASK, task.id)
+            intent.putExtra("VALUE2", 10)
             startActivity(intent)
         }
 

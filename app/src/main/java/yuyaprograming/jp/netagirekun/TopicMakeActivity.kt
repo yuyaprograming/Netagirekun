@@ -9,6 +9,7 @@ import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.Sort
 import kotlinx.android.synthetic.main.topic_make_input.*
+import java.time.LocalDateTime
 import java.util.*
 
 const val EXTRA_TOPIC = "yuyaprograming.jp.netagirekun.TOPIC"
@@ -33,6 +34,15 @@ class TopicMakeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_make)
+
+        val value1 = intent.getIntExtra("VALUE1", 0)
+        val value2 = intent.getIntExtra("VALUE2", 0)
+
+        if(value1 > value2) {
+            topic_make_button.visibility = View.INVISIBLE
+        } else {
+            topic_make_button.visibility = View.VISIBLE
+        }
 
         topic_make_button.setOnClickListener {
             val intent = Intent(this, TopicDetailActivity::class.java)

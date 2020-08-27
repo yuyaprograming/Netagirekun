@@ -35,7 +35,7 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="話題ジャンル一覧画面"
             android:theme="@style/AppTheme" />
         <activity android:name=".Explanation4Activity" />
         <activity android:name=".Explanation3Activity" />

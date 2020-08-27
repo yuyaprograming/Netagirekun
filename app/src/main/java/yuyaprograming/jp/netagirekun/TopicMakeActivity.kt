@@ -57,6 +57,8 @@ class TopicMakeActivity : AppCompatActivity() {
 
         topic_make_button.setOnClickListener {
             val intent = Intent(this, TopicDetailActivity::class.java)
+            val secret = title_edit_text.text.toString()
+            intent.putExtra("VALUE3", secret)
             startActivity(intent)
         }
 
@@ -88,6 +90,8 @@ class TopicMakeActivity : AppCompatActivity() {
             // 入力・編集する画面に遷移させる
             val topic = parent.adapter.getItem(position) as Topic
             val intent = Intent(this@TopicMakeActivity, TopicDetailActivity::class.java)
+            val secret = title_edit_text.text.toString()
+            intent.putExtra("VALUE4", secret)
             intent.putExtra(EXTRA_TOPIC, topic.id)
             startActivity(intent)
         }

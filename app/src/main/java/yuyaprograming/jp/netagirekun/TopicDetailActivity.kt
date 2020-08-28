@@ -21,10 +21,8 @@ class TopicDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_detail)
 
-        val valuex1 = intent.getStringExtra("VALUE3")
-        val valuex2 = intent.getStringExtra("VALUE4")
-        title_edit_text.setText(valuex1)
-        title_edit_text.setText(valuex2)
+        val valuex = intent.getStringExtra("VALUE3")
+        title_edit_text.setText(valuex)
         title_edit_text.visibility = View.VISIBLE
 
         // ActionBarを設定する

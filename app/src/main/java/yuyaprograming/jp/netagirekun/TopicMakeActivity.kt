@@ -91,7 +91,7 @@ class TopicMakeActivity : AppCompatActivity() {
             val topic = parent.adapter.getItem(position) as Topic
             val intent = Intent(this@TopicMakeActivity, TopicDetailActivity::class.java)
             val secret = title_edit_text.text.toString()
-            intent.putExtra("VALUE4", secret)
+            intent.putExtra("VALUE3", secret)
             intent.putExtra(EXTRA_TOPIC, topic.id)
             startActivity(intent)
         }

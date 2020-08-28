@@ -3,6 +3,7 @@ package yuyaprograming.jp.netagirekun
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.view.View
 import io.realm.Realm
 import kotlinx.android.synthetic.main.topic_detail_input.*
@@ -15,6 +16,16 @@ class TopicDetailActivity : AppCompatActivity() {
     private val mOnDoneClickListener = View.OnClickListener {
         addTask()
         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

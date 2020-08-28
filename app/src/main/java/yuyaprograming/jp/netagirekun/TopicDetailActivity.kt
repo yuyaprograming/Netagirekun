@@ -23,7 +23,7 @@ class TopicDetailActivity : AppCompatActivity() {
 
         val valuex = intent.getStringExtra("VALUE3")
         title_edit_text.setText(valuex)
-        title_edit_text.visibility = View.VISIBLE
+        title_edit_text.visibility = View.INVISIBLE
 
         // ActionBarを設定する
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar

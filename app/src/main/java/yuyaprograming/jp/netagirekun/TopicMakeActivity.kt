@@ -160,7 +160,7 @@ class TopicMakeActivity : AppCompatActivity() {
 
     private fun reloadListView() {
         // Realmデータベースから、「全てのデータを取得して新しい日時順に並べた結果」を取得
-        val taskRealmResults = nRealm.where(Topic::class.java).findAll().sort("contents", Sort.DESCENDING)
+        val taskRealmResults = nRealm.where(Topic::class.java).equalTo("title", title_edit_text.text.toString()).findAll().sort("contents", Sort.DESCENDING)
 
         // 上記の結果を、TaskList としてセットする
         mTopicAdapter.topicList = nRealm.copyFromRealm(taskRealmResults)

@@ -32,6 +32,8 @@ class TopicDetailActivity : AppCompatActivity() {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
+        supportActionBar?.title = "$valuex"
+
         topic_detail_input_done_button.setOnClickListener(mOnDoneClickListener)
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する

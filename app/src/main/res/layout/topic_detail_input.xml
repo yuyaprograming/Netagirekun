@@ -13,10 +13,20 @@
     tools:context=".TopicDetailActivity"
     tools:showIn="@layout/activity_topic_detail">
 
+    <TextView
+        android:id="@+id/explanation_topic_detail"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="話題内容を入力し、決定ボタンを押してください"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:id="@+id/content_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/explanation_topic_detail"
         android:hint="内容" />
 
     <Button

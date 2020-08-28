@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".TopicMakeActivity"
-            android:label="話題一覧画面"
+            android:label="話題の内容一覧画面"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -37,10 +37,18 @@
             android:name=".MainActivity"
             android:label="話題ジャンル一覧画面"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Explanation4Activity" />
-        <activity android:name=".Explanation3Activity" />
-        <activity android:name=".Explanation2Activity" />
-        <activity android:name=".Explanation1Activity">
+        <activity
+            android:name=".Explanation4Activity"
+            android:label="アプリの使い方説明④"/>
+        <activity
+            android:name=".Explanation3Activity"
+            android:label="アプリの使い方説明③"/>
+        <activity
+            android:name=".Explanation2Activity"
+            android:label="アプリの使い方説明②"/>
+        <activity
+            android:name=".Explanation1Activity"
+            android:label="アプリの使い方説明①">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

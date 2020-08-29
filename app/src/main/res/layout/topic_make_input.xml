@@ -21,17 +21,23 @@
 
     <Button
         android:id="@+id/topic_make_button"
-        android:layout_width="96dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:textColor="#ffffff"
         android:layout_below="@id/title_edit_text"
         android:layout_centerHorizontal="true"
-        android:text="新しい話題を追加する" />
+        android:text="新しい話題を追加する"
+        android:background="@drawable/button_state" />
 
     <Button
         android:id="@+id/topic_make_input_done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/topic_make_button"
+        android:layout_marginTop="7dp"
         android:layout_centerHorizontal="true"
         android:text="保存する" />
 

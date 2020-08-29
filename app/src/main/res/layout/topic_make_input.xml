@@ -44,6 +44,7 @@
         android:textColor="#ffffff"
         android:layout_below="@id/first_box"
         android:layout_centerHorizontal="true"
+        android:textStyle="bold"
         android:text="新しい話題を追加する"
         android:background="@drawable/button_state" />
 
@@ -57,6 +58,7 @@
         android:paddingEnd="13dp"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
+        android:textStyle="bold"
         android:text="保存する"
         android:background="@drawable/button_save"/>
 

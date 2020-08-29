@@ -29,16 +29,27 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="230sp"
             android:layout_height="wrap_content"
+            android:paddingStart="13dp"
+            android:paddingEnd="13dp"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
             android:text="ランダムで話題を設定する"
+            android:background="@drawable/button_state"
             android:id="@+id/topic_set_button_above"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="230sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:paddingStart="13dp"
+            android:paddingEnd="13dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="15dp"
             android:text="お気に入りから話題を設定する"
+            android:textStyle="bold"
+            android:background="@drawable/button_save"
             android:id="@+id/topic_set_button_below"/>
 
     </LinearLayout>

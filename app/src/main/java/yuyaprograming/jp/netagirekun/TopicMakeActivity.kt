@@ -11,6 +11,7 @@ import io.realm.RealmChangeListener
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_topic_make.*
 import kotlinx.android.synthetic.main.topic_make_input.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
 
@@ -149,8 +150,11 @@ class TopicMakeActivity : AppCompatActivity() {
         }
 
         val title = title_edit_text.text.toString()
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
 
         mTask!!.title = title
+        mTask!!.currentDate = currentDate
 
         realm.copyToRealmOrUpdate(mTask!!)
         realm.commitTransaction()
@@ -160,7 +164,7 @@ class TopicMakeActivity : AppCompatActivity() {
 
     private fun reloadListView() {
         // Realmデータベースから、「全てのデータを取得して新しい日時順に並べた結果」を取得
-        val taskRealmResults = nRealm.where(Topic::class.java).equalTo("title", title_edit_text.text.toString()).findAll().sort("contents", Sort.DESCENDING)
+        val taskRealmResults = nRealm.where(Topic::class.java).equalTo("title", title_edit_text.text.toString()).findAll().sort("currentDate", Sort.DESCENDING)
 
         // 上記の結果を、TaskList としてセットする
         mTopicAdapter.topicList = nRealm.copyFromRealm(taskRealmResults)

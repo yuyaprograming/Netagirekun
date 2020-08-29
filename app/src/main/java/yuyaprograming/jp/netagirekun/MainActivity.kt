@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun reloadListView() {
         // Realmデータベースから、「全てのデータを取得して新しい日時順に並べた結果」を取得
-        val taskRealmResults = mRealm.where(Task::class.java).findAll().sort("title", Sort.DESCENDING)
+        val taskRealmResults = mRealm.where(Task::class.java).findAll().sort("currentDate", Sort.DESCENDING)
 
         // 上記の結果を、TaskList としてセットする
         mTaskAdapter.taskList = mRealm.copyFromRealm(taskRealmResults)

@@ -7,7 +7,9 @@ import android.view.MenuItem
 import android.view.View
 import io.realm.Realm
 import kotlinx.android.synthetic.main.topic_detail_input.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.util.*
 
 class TopicDetailActivity : AppCompatActivity() {
 
@@ -56,7 +58,6 @@ class TopicDetailActivity : AppCompatActivity() {
 
         if (mTopic == null) {
             // 新規作成の場合
-            
         } else {
             // 更新の場合
             content_edit_text.setText(mTopic!!.contents)
@@ -87,6 +88,10 @@ class TopicDetailActivity : AppCompatActivity() {
         val title = title_edit_text.text.toString()
         val content = content_edit_text.text.toString()
 
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+
+        mTopic!!.currentDate = currentDate
         mTopic!!.title = title
         mTopic!!.contents = content
 

@@ -7,6 +7,7 @@ import io.realm.annotations.PrimaryKey
  open class Topic : RealmObject(), Serializable {
     var title: String = ""      // タイトル
     var contents: String = ""   // 内容
+    var currentTime: String = ""
 
     // id をプライマリーキーとして設定
     @PrimaryKey

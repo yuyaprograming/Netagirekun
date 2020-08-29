@@ -56,6 +56,7 @@ class TopicDetailActivity : AppCompatActivity() {
 
         if (mTopic == null) {
             // 新規作成の場合
+            
         } else {
             // 更新の場合
             content_edit_text.setText(mTopic!!.contents)

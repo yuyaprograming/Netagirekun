@@ -1,7 +1,9 @@
 package yuyaprograming.jp.netagirekun
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.util.Log
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_topic_set.*
@@ -15,10 +17,14 @@ class TopicSetActivity : AppCompatActivity() {
 
         nRealm = Realm.getDefaultInstance()
 
-        topic_set_button_above.setOnClickListener {
+        topic_set_button_above.setOnClickListener {view ->
             val taskRealmResults = nRealm.where(Topic::class.java).findAll()
             if (taskRealmResults.size < 5) {
-
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                Snackbar.make(view, "話題を最低５つ作ってください", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("閉じる"){
+                    }.show()
             } else {
                 val b = mutableListOf<String?>()
                 for (i in 1..5) {

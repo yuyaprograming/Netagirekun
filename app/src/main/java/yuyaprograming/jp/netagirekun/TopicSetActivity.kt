@@ -17,13 +17,21 @@ class TopicSetActivity : AppCompatActivity() {
 
         topic_set_button_above.setOnClickListener {
             val taskRealmResults = nRealm.where(Topic::class.java).findAll()
-            val b = mutableListOf<String?>()
-            for (i in 1..5) {
-                val many = (0..taskRealmResults.size - 1).random()
-                val a = taskRealmResults[many]?.contents
-                b.add(a)
+            if (taskRealmResults.size < 5) {
+
+            } else {
+                val b = mutableListOf<String?>()
+                for (i in 1..5) {
+                    var many = (0..taskRealmResults.size - 1).random()
+                    var a = taskRealmResults[many]?.contents
+                    while (b.contains(a)) {
+                        many = (0..taskRealmResults.size - 1).random()
+                        a = taskRealmResults[many]?.contents
+                    }
+                    b.add(a)
+                }
+                Log.d("kotlintest", b.toString())
             }
-            Log.d("kotlintest", b.toString())
         }
 
         topic_set_button_below.setOnClickListener {

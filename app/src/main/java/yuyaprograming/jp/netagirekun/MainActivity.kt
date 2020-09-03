@@ -29,6 +29,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val barx = intent.getIntExtra("VALUE10", 0)
+
+        if (barx == 10)  {
+            Snackbar.make(findViewById(R.id.out_layer), "話題を最低５つ作ってください", Snackbar.LENGTH_LONG)
+                .setAction("閉じる"){
+                }.show()
+        }
+
         button9.setOnClickListener {
             val intent = Intent(this, TopicSetActivity::class.java)
             startActivity(intent)

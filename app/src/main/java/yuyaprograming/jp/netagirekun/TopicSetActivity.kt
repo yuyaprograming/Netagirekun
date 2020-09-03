@@ -17,14 +17,12 @@ class TopicSetActivity : AppCompatActivity() {
 
         nRealm = Realm.getDefaultInstance()
 
-        topic_set_button_above.setOnClickListener {view ->
+        topic_set_button_above.setOnClickListener {
             val taskRealmResults = nRealm.where(Topic::class.java).findAll()
             if (taskRealmResults.size < 5) {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("VALUE10", 10)
                 startActivity(intent)
-                Snackbar.make(view, "話題を最低５つ作ってください", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("閉じる"){
-                    }.show()
             } else {
                 val b = mutableListOf<String?>()
                 for (i in 1..5) {

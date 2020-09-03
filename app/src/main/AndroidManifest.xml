@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="yuyaprograming.jp.netagirekun">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <application
         android:name=".TaskApp"
         android:allowBackup="true"

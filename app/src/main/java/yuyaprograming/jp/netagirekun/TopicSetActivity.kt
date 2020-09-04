@@ -60,6 +60,17 @@ class TopicSetActivity : AppCompatActivity() {
                     }
                     b.add(a)
                 }
+                val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
+                resultIntent.putExtra("topic_x", "b")
+                val resultPendingIntent = PendingIntent.getBroadcast(
+                    this,
+                    0,
+                    resultIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+                val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlintest", b.toString())
             }
         }

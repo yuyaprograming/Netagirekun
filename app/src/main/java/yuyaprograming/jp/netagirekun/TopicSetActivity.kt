@@ -53,6 +53,7 @@ class TopicSetActivity : AppCompatActivity() {
                 }
                 val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
                 resultIntent.putExtra("topic_x", "b")
+                Log.d("otlintest",b.toString())
                 val resultPendingIntent = PendingIntent.getBroadcast(
                     this,
                     0,
@@ -62,7 +63,9 @@ class TopicSetActivity : AppCompatActivity() {
 
                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
                 alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, zz, resultPendingIntent)
-                Log.d("kotlintest", b.toString())
+                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_LONG)
+                    .setAction("閉じる"){
+                    }.show()
             },
             hourx+9, minutex, true)
         timePickerDialog.show()

@@ -36,6 +36,7 @@ class TaskAlarmReceiver : BroadcastReceiver() {
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する
         val z = intent!!.getStringExtra("topic_x")
+        Log.d("kotlintest", z.toString())
         val realm = Realm.getDefaultInstance()
 
         // タスクの情報を設定する

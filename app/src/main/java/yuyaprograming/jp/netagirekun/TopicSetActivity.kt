@@ -44,11 +44,10 @@ class TopicSetActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             DatePickerDialog.OnDateSetListener() {view, year, month, dayOfMonth->
-                val calendar = Calendar.getInstance()
-                mYear = calendar.get(Calendar.YEAR)
-                mMonth = calendar.get(Calendar.MONTH)
+                mYear = year
+                mMonth = month+1
                 Log.d("kotlin", mMonth.toString())
-                mDay = calendar.get(Calendar.DAY_OF_MONTH)
+                mDay = dayOfMonth
             },
             yearz,
             monthz-1,
@@ -69,9 +68,9 @@ class TopicSetActivity : AppCompatActivity() {
         val timePickerDialog = TimePickerDialog(
             this,
             TimePickerDialog.OnTimeSetListener { view, hour, minute ->
-                val calendar = Calendar.getInstance()
-                mHour = calendar.get(Calendar.HOUR_OF_DAY)
-                mMinute = calendar.get(Calendar.MINUTE)
+                mHour = hour
+                Log.d("k",mHour.toString())
+                mMinute = minute
                 val taskRealmResults = nRealm.where(Topic::class.java).findAll()
                 val b = mutableListOf<String?>()
                 for (i in 1..5) {
@@ -93,11 +92,17 @@ class TopicSetActivity : AppCompatActivity() {
                     PendingIntent.FLAG_UPDATE_CURRENT
                 )
                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+                val calendar = Calendar.getInstance()
                 calendar.set(Calendar.YEAR, mYear)
+                Log.d("kot", mYear.toString())
                 calendar.set(Calendar.MONTH, mMonth)
+                Log.d("kot", mMonth.toString())
                 calendar.set(Calendar.DATE, mDay)
+                Log.d("kot", mDay.toString())
                 calendar.set(Calendar.HOUR, mHour)
+                Log.d("kot", mHour.toString())
                 calendar.set(Calendar.MINUTE, mMinute)
+                Log.d("kot", mMinute.toString())
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlins", calendar.toString())
                 Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)

@@ -1,6 +1,7 @@
 package yuyaprograming.jp.netagirekun
 
 import android.app.AlarmManager
+import android.app.DatePickerDialog
 import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -19,10 +20,42 @@ class TopicSetActivity : AppCompatActivity() {
 
     private var mHour = 0
     private var mMinute = 0
+    private var mYear = 0
+    private var mMonth = 0
+    private var mDay = 0
 
     private lateinit var nRealm: Realm
 
     private var mTopic: Topic? = null
+
+    private fun showDatePickerDialog() {
+        val y = Date() // 現在時刻
+        val yearx = SimpleDateFormat("yyyy", Locale.getDefault())
+        val yy =yearx.format(y)
+        val yearz : Int = Integer.parseInt(yy)
+        val m = Date() // 現在時刻
+        val monthx = SimpleDateFormat("MM",Locale.getDefault())
+        val mm =monthx.format(m)
+        val monthz : Int = Integer.parseInt(mm)
+        val h = Date() // 現在時刻
+        val dayx = SimpleDateFormat("dd",Locale.getDefault())
+        val hh =dayx.format(h)
+        val dayz : Int = Integer.parseInt(hh)
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener() {view, year, month, dayOfMonth->
+                val calendar = Calendar.getInstance()
+                mYear = calendar.get(Calendar.YEAR)
+                mMonth = calendar.get(Calendar.MONTH)
+                Log.d("kotlin", mMonth.toString())
+                mDay = calendar.get(Calendar.DAY_OF_MONTH)
+            },
+            yearz,
+            monthz-1,
+            dayz)
+        datePickerDialog.show()
+
+    }
 
     private fun showTimePickerDialog() {
         val d = Date() // 現在時刻
@@ -36,10 +69,9 @@ class TopicSetActivity : AppCompatActivity() {
         val timePickerDialog = TimePickerDialog(
             this,
             TimePickerDialog.OnTimeSetListener { view, hour, minute ->
-                mHour = hour
-                mMinute = minute
-                val z = mHour + mMinute
-                val zz : Long = z.toLong()
+                val calendar = Calendar.getInstance()
+                mHour = calendar.get(Calendar.HOUR_OF_DAY)
+                mMinute = calendar.get(Calendar.MINUTE)
                 val taskRealmResults = nRealm.where(Topic::class.java).findAll()
                 val b = mutableListOf<String?>()
                 for (i in 1..5) {
@@ -60,10 +92,15 @@ class TopicSetActivity : AppCompatActivity() {
                     resultIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT
                 )
-
                 val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, zz, resultPendingIntent)
-                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_LONG)
+                calendar.set(Calendar.YEAR, mYear)
+                calendar.set(Calendar.MONTH, mMonth)
+                calendar.set(Calendar.DATE, mDay)
+                calendar.set(Calendar.HOUR, mHour)
+                calendar.set(Calendar.MINUTE, mMinute)
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
+                Log.d("kotlins", calendar.toString())
+                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
                     .setAction("閉じる"){
                     }.show()
             },
@@ -77,7 +114,6 @@ class TopicSetActivity : AppCompatActivity() {
         nRealm = Realm.getDefaultInstance()
 
         topic_set_button_above.setOnClickListener {
-            topic_set_button_above.text = "ランダムで話題をセットする"
             val taskRealmResults = nRealm.where(Topic::class.java).findAll()
             if (taskRealmResults.size < 5) {
                 val intent = Intent(this, MainActivity::class.java)
@@ -85,6 +121,7 @@ class TopicSetActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 showTimePickerDialog()
+                showDatePickerDialog()
             }
         }
 

@@ -15,6 +15,7 @@ import io.realm.Realm
 
 class TaskAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
+        Log.d("kotlintest", "TaskAlarmReceiver.onReceive is called.")
         val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // SDKバージョンが26以上の場合、チャネルを設定する必要がある

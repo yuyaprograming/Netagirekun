@@ -45,9 +45,11 @@ class TopicSetActivity : AppCompatActivity() {
             this,
             DatePickerDialog.OnDateSetListener() {view, year, month, dayOfMonth->
                 mYear = year
-                mMonth = month+1
-                Log.d("kotlin", mMonth.toString())
+                Log.d("A", mYear.toString())
+                mMonth = month
+                Log.d("A", mMonth.toString())
                 mDay = dayOfMonth
+                Log.d("A", mDay.toString())
             },
             yearz,
             monthz-1,
@@ -69,8 +71,9 @@ class TopicSetActivity : AppCompatActivity() {
             this,
             TimePickerDialog.OnTimeSetListener { view, hour, minute ->
                 mHour = hour
-                Log.d("k",mHour.toString())
+                Log.d("A",mHour.toString())
                 mMinute = minute
+                Log.d("A",mMinute.toString())
                 val taskRealmResults = nRealm.where(Topic::class.java).findAll()
                 val b = mutableListOf<String?>()
                 for (i in 1..5) {
@@ -97,7 +100,7 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mYear.toString())
                 calendar.set(Calendar.MONTH, mMonth)
                 Log.d("kot", mMonth.toString())
-                calendar.set(Calendar.DATE, mDay)
+                calendar.set(Calendar.DAY_OF_MONTH, mDay)
                 Log.d("kot", mDay.toString())
                 calendar.set(Calendar.HOUR, mHour)
                 Log.d("kot", mHour.toString())
@@ -105,7 +108,7 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mMinute.toString())
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlins", calendar.toString())
-                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
+                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+1+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
                     .setAction("閉じる"){
                     }.show()
             },

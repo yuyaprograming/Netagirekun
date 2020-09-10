@@ -102,13 +102,13 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mMonth.toString())
                 calendar.set(Calendar.DAY_OF_MONTH, mDay)
                 Log.d("kot", mDay.toString())
-                calendar.set(Calendar.HOUR, mHour)
+                calendar.set(Calendar.HOUR, mHour-9)
                 Log.d("kot", mHour.toString())
                 calendar.set(Calendar.MINUTE, mMinute)
                 Log.d("kot", mMinute.toString())
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlins", calendar.toString())
-                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+1+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
+                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
                     .setAction("閉じる"){
                     }.show()
             },

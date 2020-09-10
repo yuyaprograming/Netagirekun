@@ -42,8 +42,8 @@ class TaskAlarmReceiver : BroadcastReceiver() {
 
         // タスクの情報を設定する
         builder.setTicker("話題をお届けしました")   // 5.0以降は表示されない
-        builder.setContentTitle("注目")
-        builder.setContentText("話題をお届けしました")
+        builder.setContentTitle("<注目>")
+        builder.setContentText("話題をお届けしました!!")
 
         // 通知をタップしたらアプリを起動するようにする
         val startAppIntent = Intent(context, TopicList::class.java)

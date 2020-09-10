@@ -108,7 +108,7 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mMinute.toString())
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlins", calendar.toString())
-                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+"$mMonth"+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
+                Snackbar.make(findViewById(R.id.topic_set_button_above), "話題は"+"$mYear"+"年"+(mMonth+1)+"月"+"$mDay"+"日"+"$mHour"+ "時"+ "$mMinute"+ "分に設定されました", Snackbar.LENGTH_INDEFINITE)
                     .setAction("閉じる"){
                     }.show()
             },

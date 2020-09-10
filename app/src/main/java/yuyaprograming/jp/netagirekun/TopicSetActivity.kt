@@ -100,7 +100,7 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mYear.toString())
                 calendar.set(Calendar.MONTH, mMonth)
                 Log.d("kot", mMonth.toString())
-                calendar.set(Calendar.DAY_OF_MONTH, mDay)
+                calendar.set(Calendar.DAY_OF_MONTH, mDay-1)
                 Log.d("kot", mDay.toString())
                 calendar.set(Calendar.HOUR, mHour-9)
                 Log.d("kot", mHour.toString())

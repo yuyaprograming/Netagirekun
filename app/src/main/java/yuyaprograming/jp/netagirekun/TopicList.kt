@@ -11,6 +11,6 @@ class TopicList : AppCompatActivity() {
         setContentView(R.layout.activity_topic_list)
 
         val z = intent.getStringExtra("topic_list")
-        Log.d("kotlintest", z.toString())
+        Log.d("zeus", z.toString())
     }
 }

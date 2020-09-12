@@ -36,7 +36,7 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         builder.setAutoCancel(true)
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する
-        val z = intent!!.getStringExtra("topic_x")
+        val z = intent!!.getStringArrayListExtra("topic_x")
         val realm =Realm.getDefaultInstance()
 
         // タスクの情報を設定する
@@ -46,7 +46,7 @@ class TaskAlarmReceiver : BroadcastReceiver() {
 
         // 通知をタップしたらアプリを起動するようにする
         val startAppIntent = Intent(context, TopicList::class.java)
-        startAppIntent.putExtra("topic_list", z)
+        startAppIntent.putStringArrayListExtra("topic_list", z)
         startAppIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT)
         val pendingIntent = PendingIntent.getActivity(context, 0, startAppIntent, 0)
         builder.setContentIntent(pendingIntent)

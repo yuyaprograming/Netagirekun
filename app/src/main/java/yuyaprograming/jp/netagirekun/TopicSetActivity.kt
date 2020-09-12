@@ -75,7 +75,7 @@ class TopicSetActivity : AppCompatActivity() {
                 mMinute = minute
                 Log.d("A",mMinute.toString())
                 val taskRealmResults = nRealm.where(Topic::class.java).findAll()
-                val b = arrayListOf<String?>()
+                val b = arrayListOf<String>()
                 for (i in 1..5) {
                     var many = (0..taskRealmResults.size - 1).random()
                     var a = taskRealmResults[many]?.contents
@@ -83,10 +83,12 @@ class TopicSetActivity : AppCompatActivity() {
                         many = (0..taskRealmResults.size - 1).random()
                         a = taskRealmResults[many]?.contents
                     }
-                    b.add(a)
+                    if (a != null) {
+                        b.add(a)
+                    }
                 }
                 val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
-                resultIntent.putExtra("topic_x", b)
+                resultIntent.putStringArrayListExtra("topic_x", b)
                 Log.d("otlintest",b.toString())
                 val resultPendingIntent = PendingIntent.getBroadcast(
                     this,

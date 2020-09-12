@@ -75,7 +75,7 @@ class TopicSetActivity : AppCompatActivity() {
                 mMinute = minute
                 Log.d("A",mMinute.toString())
                 val taskRealmResults = nRealm.where(Topic::class.java).findAll()
-                val b = mutableListOf<String?>()
+                val b = arrayListOf<String?>()
                 for (i in 1..5) {
                     var many = (0..taskRealmResults.size - 1).random()
                     var a = taskRealmResults[many]?.contents
@@ -86,7 +86,7 @@ class TopicSetActivity : AppCompatActivity() {
                     b.add(a)
                 }
                 val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
-                resultIntent.putExtra("topic_x", "b")
+                resultIntent.putExtra("topic_x", b)
                 Log.d("otlintest",b.toString())
                 val resultPendingIntent = PendingIntent.getBroadcast(
                     this,
@@ -102,11 +102,10 @@ class TopicSetActivity : AppCompatActivity() {
                 Log.d("kot", mMonth.toString())
                 calendar.set(Calendar.DAY_OF_MONTH, mDay)
                 Log.d("kot", mDay.toString())
-                calendar.set(Calendar.HOUR, mHour-9)
+                calendar.set(Calendar.HOUR, mHour-12)
                 Log.d("kot", mHour.toString())
                 calendar.set(Calendar.MINUTE, mMinute)
                 Log.d("kot", mMinute.toString())
-                calendar.set(Calendar.MILLISECOND, 0)
                 calendar.set(Calendar.SECOND, 0)
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, resultPendingIntent)
                 Log.d("kotlins", calendar.toString())
@@ -114,7 +113,7 @@ class TopicSetActivity : AppCompatActivity() {
                     .setAction("閉じる"){
                     }.show()
             },
-            hourx+9, minutex, true)
+            hourx, minutex, true)
         timePickerDialog.show()
     }
 

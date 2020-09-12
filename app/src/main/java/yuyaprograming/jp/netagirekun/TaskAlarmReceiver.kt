@@ -32,13 +32,12 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         builder.setSmallIcon(R.drawable.small_icon)
         builder.setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.large_icon))
         builder.setWhen(System.currentTimeMillis())
-        builder.setDefaults(Notification.DEFAULT_ALL)
+        builder.setDefaults(Notification.DEFAULT_SOUND)
         builder.setAutoCancel(true)
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する
         val z = intent!!.getStringExtra("topic_x")
-        Log.d("kotlintest", z.toString())
-        val realm = Realm.getDefaultInstance()
+        val realm =Realm.getDefaultInstance()
 
         // タスクの情報を設定する
         builder.setTicker("話題をお届けしました")   // 5.0以降は表示されない

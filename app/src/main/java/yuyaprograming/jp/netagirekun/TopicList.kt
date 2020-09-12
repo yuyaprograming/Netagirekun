@@ -10,7 +10,7 @@ class TopicList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_list)
 
-        val z = intent.getStringExtra("topic_list")
-        Log.d("zeus", z.toString())
+        val z = intent!!.getStringExtra("topic_list")
+        Log.d("zeus", z)
     }
 }

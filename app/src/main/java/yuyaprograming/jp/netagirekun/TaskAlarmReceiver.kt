@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.media.RingtoneManager
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.util.Log
@@ -28,11 +29,12 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         }
 
         // 通知の設定を行う
+        val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         val builder = NotificationCompat.Builder(context, "default")
         builder.setSmallIcon(R.drawable.small_icon)
         builder.setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.large_icon))
         builder.setWhen(System.currentTimeMillis())
-        builder.setDefaults(Notification.DEFAULT_SOUND)
+        builder.setSound(uri)
         builder.setAutoCancel(true)
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する

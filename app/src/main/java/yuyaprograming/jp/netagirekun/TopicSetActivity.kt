@@ -7,6 +7,7 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.util.Log
 import io.realm.Realm
@@ -137,7 +138,19 @@ class TopicSetActivity : AppCompatActivity() {
         }
 
         topic_set_button_below.setOnClickListener {
+            val resultIntent = Intent(applicationContext, TaskAlarmReceiver::class.java)
+            val resultPendingIntent = PendingIntent.getBroadcast(
+                this@TopicSetActivity,
+                0,
+                resultIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(resultPendingIntent)
+            Snackbar.make(findViewById(R.id.activity_topic_set), "セットした話題が削除されました", Snackbar.LENGTH_LONG)
+                .setAction("閉じる"){
+                }.show()
         }
     }
 }

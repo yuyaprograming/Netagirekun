@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TopicList"></activity>
+        <activity
+            android:name=".TopicList"
+            android:label="話題表示画面"
+            android:parentActivityName=".TopicSetActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".TopicDetailActivity"
             android:label="話題入力画面"

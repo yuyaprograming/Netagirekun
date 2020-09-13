@@ -37,7 +37,6 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         builder.setWhen(System.currentTimeMillis())
         builder.setSound(uri)
         builder.setAutoCancel(true)
-        builder.build().flags = Notification.FLAG_INSISTENT
 
         // EXTRA_TASK から Task の id を取得して、 id から Task のインスタンスを取得する
         val z = intent!!.getStringArrayListExtra("topic_x")
@@ -56,7 +55,9 @@ class TaskAlarmReceiver : BroadcastReceiver() {
         builder.setContentIntent(pendingIntent)
 
         // 通知を表示する
-        notificationManager.notify(1, builder.build())
+        val k = builder.build()
+        k.flags = Notification.FLAG_INSISTENT
+        notificationManager.notify(1, k)
         realm.close()
     }
 }

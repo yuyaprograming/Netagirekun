@@ -77,9 +77,11 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage(task.title + "を削除しますか")
 
             builder.setPositiveButton("OK"){_, _ ->
+                val taskRealmResults = mRealm.where(Topic::class.java).equalTo("title", task.title).findAll()
                 val results = mRealm.where(Task::class.java).equalTo("id", task.id).findAll()
 
                 mRealm.beginTransaction()
+                taskRealmResults.deleteAllFromRealm()
                 results.deleteAllFromRealm()
                 mRealm.commitTransaction()
 
